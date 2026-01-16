@@ -5,13 +5,96 @@
 
   let htmlContent = '';
 
+  // Syntax highlighting for code blocks
+  function highlightCode(code: string, lang: string): string {
+    const escaped = escapeHtml(code);
+
+    if (!lang || lang === 'text' || lang === 'plain') {
+      return escaped;
+    }
+
+    let highlighted = escaped;
+
+    // Bash/Shell highlighting
+    if (lang === 'bash' || lang === 'sh' || lang === 'shell') {
+      // Comments
+      highlighted = highlighted.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+      // Strings
+      highlighted = highlighted.replace(/(&quot;[^&]*&quot;|&#39;[^&]*&#39;)/g, '<span class="string">$1</span>');
+      // Commands (common ones)
+      highlighted = highlighted.replace(/\b(cd|ls|mkdir|rm|cp|mv|cat|grep|sed|awk|sudo|apt|yum|docker|npm|git|ssh|scp|chmod|chown|curl|wget)\b/g, '<span class="keyword">$1</span>');
+      // Flags
+      highlighted = highlighted.replace(/(\s-+[\w-]+)/g, '<span class="flag">$1</span>');
+    }
+
+    // Python highlighting
+    if (lang === 'python' || lang === 'py') {
+      // Comments
+      highlighted = highlighted.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+      // Strings
+      highlighted = highlighted.replace(/(&quot;[^&]*&quot;|&#39;[^&]*&#39;)/g, '<span class="string">$1</span>');
+      // Keywords
+      highlighted = highlighted.replace(/\b(def|class|import|from|if|elif|else|for|while|return|yield|with|as|try|except|finally|raise|pass|break|continue|and|or|not|in|is|True|False|None)\b/g, '<span class="keyword">$1</span>');
+      // Functions
+      highlighted = highlighted.replace(/\b(\w+)(?=\()/g, '<span class="function">$1</span>');
+    }
+
+    // JavaScript/TypeScript highlighting
+    if (lang === 'javascript' || lang === 'js' || lang === 'typescript' || lang === 'ts') {
+      // Comments (single line and multi-line)
+      highlighted = highlighted.replace(/(\/\/.*$)/gm, '<span class="comment">$1</span>');
+      highlighted = highlighted.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="comment">$1</span>');
+      // Strings
+      highlighted = highlighted.replace(/(&quot;[^&]*&quot;|&#39;[^&]*&#39;|`[^`]*`)/g, '<span class="string">$1</span>');
+      // Keywords
+      highlighted = highlighted.replace(/\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|class|extends|import|export|from|default|async|await|try|catch|finally|throw|new|this|typeof|instanceof)\b/g, '<span class="keyword">$1</span>');
+      // Functions
+      highlighted = highlighted.replace(/\b(\w+)(?=\()/g, '<span class="function">$1</span>');
+    }
+
+    // YAML highlighting
+    if (lang === 'yaml' || lang === 'yml') {
+      // Comments
+      highlighted = highlighted.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+      // Keys
+      highlighted = highlighted.replace(/^(\s*)(\w+):/gm, '$1<span class="property">$2</span>:');
+      // Strings
+      highlighted = highlighted.replace(/(&quot;[^&]*&quot;|&#39;[^&]*&#39;)/g, '<span class="string">$1</span>');
+      // Boolean/null values
+      highlighted = highlighted.replace(/\b(true|false|null|yes|no)\b/g, '<span class="keyword">$1</span>');
+    }
+
+    // Docker highlighting
+    if (lang === 'dockerfile' || lang === 'docker') {
+      // Comments
+      highlighted = highlighted.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+      // Instructions
+      highlighted = highlighted.replace(/\b(FROM|RUN|CMD|LABEL|EXPOSE|ENV|ADD|COPY|ENTRYPOINT|VOLUME|USER|WORKDIR|ARG|ONBUILD|STOPSIGNAL|HEALTHCHECK|SHELL)\b/g, '<span class="keyword">$1</span>');
+      // Strings
+      highlighted = highlighted.replace(/(&quot;[^&]*&quot;|&#39;[^&]*&#39;)/g, '<span class="string">$1</span>');
+    }
+
+    // JSON highlighting
+    if (lang === 'json') {
+      // Property names
+      highlighted = highlighted.replace(/(&quot;[\w-]+&quot;)(\s*:)/g, '<span class="property">$1</span>$2');
+      // Strings
+      highlighted = highlighted.replace(/:\s*(&quot;[^&]*&quot;)/g, ': <span class="string">$1</span>');
+      // Numbers, booleans, null
+      highlighted = highlighted.replace(/\b(true|false|null|\d+\.?\d*)\b/g, '<span class="keyword">$1</span>');
+    }
+
+    return highlighted;
+  }
+
   // Simple markdown to HTML converter
   function parseMarkdown(markdown: string): string {
     let html = markdown;
 
-    // Code blocks
+    // Code blocks with syntax highlighting
     html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (_, lang, code) => {
-      return `<pre><code class="language-${lang || 'text'}">${escapeHtml(code.trim())}</code></pre>`;
+      const highlighted = highlightCode(code.trim(), lang || 'text');
+      return `<pre><code class="language-${lang || 'text'}">${highlighted}</code></pre>`;
     });
 
     // Inline code
@@ -166,8 +249,36 @@
     border: none;
     padding: 0;
     font-size: 0.9375rem;
-    color: var(--color-accent-green);
+    color: var(--color-text-secondary);
     line-height: 1.8;
+  }
+
+  /* Syntax highlighting colors */
+  .markdown-content :global(.keyword) {
+    color: var(--color-accent-primary-light);
+    font-weight: 600;
+  }
+
+  .markdown-content :global(.string) {
+    color: var(--color-accent-secondary-light);
+  }
+
+  .markdown-content :global(.comment) {
+    color: var(--color-text-tertiary);
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  .markdown-content :global(.function) {
+    color: #f59e0b;
+  }
+
+  .markdown-content :global(.property) {
+    color: #ec4899;
+  }
+
+  .markdown-content :global(.flag) {
+    color: #10b981;
   }
 
   .markdown-content :global(ul),

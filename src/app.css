@@ -19,67 +19,79 @@
 
 :root[data-theme="dark"] {
   /* Colors - Background */
-  --color-bg-primary: #0a0e14;
-  --color-bg-secondary: #0d1117;
-  --color-bg-tertiary: #161b22;
-  --color-bg-elevated: #1c2128;
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #111118;
+  --color-bg-tertiary: #1a1a24;
+  --color-bg-elevated: #21212e;
 
   /* Colors - Borders */
-  --color-border-default: #2d333b;
-  --color-border-muted: #21262d;
-  --color-border-emphasis: #539bf5;
+  --color-border-default: #2a2a3a;
+  --color-border-muted: #1f1f2a;
+  --color-border-emphasis: #8b5cf6;
 
   /* Colors - Text */
-  --color-text-primary: #cdd9e5;
-  --color-text-secondary: #adbac7;
-  --color-text-tertiary: #768390;
-  --color-text-muted: #5d6975;
-  --color-text-disabled: #444c56;
+  --color-text-primary: #e4e4f1;
+  --color-text-secondary: #c4c4d6;
+  --color-text-tertiary: #8585a3;
+  --color-text-muted: #5c5c75;
+  --color-text-disabled: #3a3a4a;
 
-  /* Colors - Accent */
-  --color-accent-blue: #539bf5;
-  --color-accent-blue-light: #6cb6ff;
-  --color-accent-green: #8ddb8c;
-  --color-accent-green-dark: #57ab5a;
+  /* Colors - Accent - Purple & Cyan theme */
+  --color-accent-primary: #8b5cf6;
+  --color-accent-primary-light: #a78bfa;
+  --color-accent-secondary: #06b6d4;
+  --color-accent-secondary-light: #22d3ee;
+
+  /* Legacy support (maps to new purple theme) */
+  --color-accent-blue: #8b5cf6;
+  --color-accent-blue-light: #a78bfa;
+  --color-accent-green: #06b6d4;
+  --color-accent-green-dark: #0891b2;
 
   /* Colors - Semantic */
-  --color-success: #8ddb8c;
-  --color-warning: #ffbd2e;
-  --color-error: #ff5f56;
-  --color-info: #6cb6ff;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #06b6d4;
 }
 
 :root[data-theme="light"],
 :root:not([data-theme]) {
   /* Colors - Background */
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f6f8fa;
-  --color-bg-tertiary: #eaeef2;
+  --color-bg-secondary: #f8f7fc;
+  --color-bg-tertiary: #f0eef8;
   --color-bg-elevated: #ffffff;
 
   /* Colors - Borders */
-  --color-border-default: #d0d7de;
-  --color-border-muted: #e1e4e8;
-  --color-border-emphasis: #0969da;
+  --color-border-default: #e0dce9;
+  --color-border-muted: #ebe9f2;
+  --color-border-emphasis: #7c3aed;
 
   /* Colors - Text */
-  --color-text-primary: #1f2328;
-  --color-text-secondary: #444d56;
-  --color-text-tertiary: #636e7b;
-  --color-text-muted: #8c959f;
-  --color-text-disabled: #babbbd;
+  --color-text-primary: #1a1625;
+  --color-text-secondary: #3d3751;
+  --color-text-tertiary: #6b6780;
+  --color-text-muted: #9791ab;
+  --color-text-disabled: #c5c1d4;
 
-  /* Colors - Accent */
-  --color-accent-blue: #0969da;
-  --color-accent-blue-light: #0550ae;
-  --color-accent-green: #1a7f37;
-  --color-accent-green-dark: #117f32;
+  /* Colors - Accent - Purple & Cyan theme */
+  --color-accent-primary: #7c3aed;
+  --color-accent-primary-light: #6d28d9;
+  --color-accent-secondary: #0891b2;
+  --color-accent-secondary-light: #06b6d4;
+
+  /* Legacy support (maps to new purple theme) */
+  --color-accent-blue: #7c3aed;
+  --color-accent-blue-light: #6d28d9;
+  --color-accent-green: #0891b2;
+  --color-accent-green-dark: #0e7490;
 
   /* Colors - Semantic */
-  --color-success: #1a7f37;
-  --color-warning: #bf8700;
-  --color-error: #cf222e;
-  --color-info: #0969da;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0891b2;
 }
 
 :root {
@@ -300,12 +312,12 @@ li::marker {
    =================================== */
 
 ::selection {
-  background: rgba(83, 155, 245, 0.3);
+  background: rgba(139, 92, 246, 0.3);
   color: var(--color-text-primary);
 }
 
 ::-moz-selection {
-  background: rgba(83, 155, 245, 0.3);
+  background: rgba(139, 92, 246, 0.3);
   color: var(--color-text-primary);
 }
 
@@ -473,7 +485,7 @@ li::marker {
 .btn-primary:hover {
   background: var(--color-accent-blue-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(83, 155, 245, 0.4);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .btn-secondary {
@@ -494,7 +506,7 @@ li::marker {
 }
 
 .btn-ghost:hover {
-  background: rgba(83, 155, 245, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   color: var(--color-accent-blue-light);
 }
 
@@ -553,9 +565,9 @@ li::marker {
 }
 
 .badge-primary {
-  background: rgba(83, 155, 245, 0.15);
+  background: rgba(139, 92, 246, 0.15);
   color: var(--color-accent-blue-light);
-  border: 1px solid rgba(83, 155, 245, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 .badge-success {
@@ -693,10 +705,10 @@ li::marker {
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(83, 155, 245, 0.3);
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(83, 155, 245, 0.6), 0 0 30px rgba(83, 155, 245, 0.4);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
   }
 }
 
@@ -803,7 +815,7 @@ li::marker {
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(83, 155, 245, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
 }
 
 .hover-scale {
