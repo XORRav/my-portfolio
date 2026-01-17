@@ -18,9 +18,7 @@
   let readingTime = 0;
 
   // Reader preferences
-  let fontSize = 'normal';
   let focusMode = false;
-  let showReaderControls = false;
 
   // Scroll handler reference for cleanup
   let scrollHandler: (() => void) | null = null;
@@ -49,12 +47,6 @@
       contentExists = false;
     }
     loading = false;
-
-    // Load saved preferences
-    if (browser) {
-      const savedFontSize = localStorage.getItem('reader-font-size');
-      if (savedFontSize) fontSize = savedFontSize;
-    }
   });
 
   onDestroy(() => {
@@ -132,13 +124,6 @@
     showTableOfContents = !showTableOfContents;
   }
 
-  function setFontSize(size: string) {
-    fontSize = size;
-    if (browser) {
-      localStorage.setItem('reader-font-size', size);
-    }
-  }
-
   function toggleFocusMode() {
     focusMode = !focusMode;
   }
@@ -171,7 +156,7 @@
 </svelte:head>
 
 {#if homelab}
-  <main class="homelab-detail" class:focus-mode={focusMode} class:font-small={fontSize === 'small'} class:font-large={fontSize === 'large'}>
+  <main class="homelab-detail" class:focus-mode={focusMode}>
     <!-- Sticky Back Navigation -->
     <div class="sticky-back-nav">
       <a href="/homelab" class="back-btn">
@@ -350,65 +335,25 @@
         </div>
       </div>
 
-      <!-- Reader Controls (Floating) -->
-      <div class="reader-controls" class:expanded={showReaderControls}>
-        <button
-          class="reader-controls-toggle"
-          on:click={() => showReaderControls = !showReaderControls}
-          aria-label="Toggle reader controls"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <!-- Focus Mode Toggle (Floating) -->
+      <button
+        class="focus-mode-toggle"
+        class:active={focusMode}
+        on:click={toggleFocusMode}
+        aria-label="Toggle focus mode"
+        title={focusMode ? 'Exit focus mode' : 'Enter focus mode'}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          {#if focusMode}
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="2" y1="2" x2="22" y2="22"/>
+          {:else}
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
             <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-          </svg>
-        </button>
-
-        {#if showReaderControls}
-          <div class="reader-controls-panel">
-            <!-- Font Size Controls -->
-            <div class="control-group">
-              <span class="control-label">Font Size</span>
-              <div class="font-size-controls">
-                <button
-                  class="font-btn"
-                  class:active={fontSize === 'small'}
-                  on:click={() => setFontSize('small')}
-                  aria-label="Small font"
-                >A-</button>
-                <button
-                  class="font-btn"
-                  class:active={fontSize === 'normal'}
-                  on:click={() => setFontSize('normal')}
-                  aria-label="Normal font"
-                >A</button>
-                <button
-                  class="font-btn"
-                  class:active={fontSize === 'large'}
-                  on:click={() => setFontSize('large')}
-                  aria-label="Large font"
-                >A+</button>
-              </div>
-            </div>
-
-            <!-- Focus Mode Toggle -->
-            <div class="control-group">
-              <span class="control-label">Focus Mode</span>
-              <button
-                class="focus-toggle"
-                class:active={focusMode}
-                on:click={toggleFocusMode}
-                aria-label="Toggle focus mode"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                {focusMode ? 'On' : 'Off'}
-              </button>
-            </div>
-          </div>
-        {/if}
-      </div>
+          {/if}
+        </svg>
+      </button>
 
       <!-- Floating TOC Button (Mobile) -->
       <button class="floating-toc-btn" on:click={toggleTableOfContents} aria-label="Toggle table of contents">
@@ -1012,15 +957,12 @@
     color: var(--color-accent-primary-light);
   }
 
-  /* Reader Controls */
-  .reader-controls {
+  /* Focus Mode Toggle */
+  .focus-mode-toggle {
     position: fixed;
     bottom: 6rem;
     right: 2rem;
     z-index: 50;
-  }
-
-  .reader-controls-toggle {
     width: 48px;
     height: 48px;
     background: var(--color-bg-elevated);
@@ -1035,94 +977,19 @@
     box-shadow: var(--shadow-md);
   }
 
-  .reader-controls-toggle:hover {
+  .focus-mode-toggle:hover {
     border-color: var(--color-accent-primary);
     color: var(--color-accent-primary-light);
+    transform: scale(1.05);
   }
 
-  .reader-controls-panel {
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    margin-bottom: 0.5rem;
-    background: var(--color-bg-elevated);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-lg);
-    padding: 1rem;
-    min-width: 200px;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .control-group {
-    margin-bottom: 1rem;
-  }
-
-  .control-group:last-child {
-    margin-bottom: 0;
-  }
-
-  .control-label {
-    display: block;
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-
-  .font-size-controls {
-    display: flex;
-    gap: 0.25rem;
-  }
-
-  .font-btn {
-    flex: 1;
-    padding: 0.5rem;
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all var(--transition-base);
-  }
-
-  .font-btn:hover {
-    border-color: var(--color-accent-primary);
-  }
-
-  .font-btn.active {
-    background: rgba(139, 92, 246, 0.15);
+  .focus-mode-toggle.active {
+    background: rgba(139, 92, 246, 0.2);
     border-color: var(--color-accent-primary);
     color: var(--color-accent-primary-light);
-  }
-
-  .focus-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    background: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all var(--transition-base);
-  }
-
-  .focus-toggle:hover {
-    border-color: var(--color-accent-primary);
-  }
-
-  .focus-toggle.active {
-    background: rgba(139, 92, 246, 0.15);
-    border-color: var(--color-accent-primary);
-    color: var(--color-accent-primary-light);
+    box-shadow:
+      var(--shadow-md),
+      0 0 20px rgba(139, 92, 246, 0.3);
   }
 
   /* Floating TOC Button */
