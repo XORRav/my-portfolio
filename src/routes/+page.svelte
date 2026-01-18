@@ -1554,10 +1554,6 @@
     border-color: rgba(124, 58, 237, 0.3);
   }
 
-  :global(:root[data-theme="light"]) .terminal-header {
-    background: linear-gradient(180deg, rgba(40, 40, 60, 1) 0%, rgba(30, 30, 48, 1) 100%);
-  }
-
   :global(:root[data-theme="light"]) .project-card .card-border {
     background: var(--color-bg-elevated);
     border-color: rgba(124, 58, 237, 0.15);
