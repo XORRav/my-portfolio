@@ -1,11 +1,1 @@
-[
-  {
-    "id": 1,
-    "title": "Home Lab Infrastructure",
-    "description": "Enterprise-grade homelab setup featuring Proxmox hypervisor cluster with high availability, automated Docker container orchestration, VLAN-based network segmentation, and comprehensive monitoring stack. Includes WireGuard VPN gateway, Pi-hole DNS filtering, Grafana/Prometheus monitoring, and automated backup solutions.",
-    "githubUrl": "https://github.com/yourusername/homelab",
-    "tags": ["homelab", "proxmox", "docker", "networking", "automation"],
-    "date": "2025-12-15",
-    "featured": true
-  }
-]
+[]

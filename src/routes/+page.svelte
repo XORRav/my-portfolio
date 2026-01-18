@@ -26,13 +26,13 @@
 
   const featuredProjects = projectsData.filter(p => p.featured).slice(0, 3);
 
-  const skills = [
-    { name: 'Web Security', icon: '&#x1F6E1;' },
-    { name: 'Penetration Testing', icon: '&#x1F3AF;' },
-    { name: 'Network Security', icon: '&#x1F310;' },
-    { name: 'Linux Systems', icon: '&#x1F427;' },
-    { name: 'Python', icon: '&#x1F40D;' },
-    { name: 'Docker', icon: '&#x1F433;' }
+  const interests = [
+    { name: 'Offensive Security', icon: '&#x1F480;' },
+    { name: 'Tool Development', icon: '&#x1F6E0;' },
+    { name: 'CTF Challenges', icon: '&#x1F3C1;' },
+    { name: 'Linux Tinkering', icon: '&#x1F427;' },
+    { name: 'Scripting', icon: '&#x1F40D;' },
+    { name: 'Homelab Experiments', icon: '&#x1F5A5;' }
   ];
 
   function getDifficultyColor(difficulty: string): string {
@@ -46,8 +46,8 @@
 </script>
 
 <svelte:head>
-  <title>Security Researcher & Developer | Portfolio</title>
-  <meta name="description" content="Security researcher, penetration tester, and developer. Explore my CTF writeups, security tools, and homelab projects." />
+  <title>Security Enthusiast | Portfolio</title>
+  <meta name="description" content="A hobbyist exploring offensive security, CTF challenges, and tool development. Check out my writeups and homelab experiments." />
 </svelte:head>
 
 <Navbar />
@@ -71,15 +71,15 @@
         </div>
 
         <h1 class="hero-title animate-slideUp">
-          <span class="title-line">Security Researcher</span>
+          <span class="title-line">Security Enthusiast</span>
           <span class="title-accent">&amp;</span>
-          <span class="title-gradient">Penetration Tester</span>
+          <span class="title-gradient">Curious Hobbyist</span>
         </h1>
 
         <p class="hero-description animate-slideUp">
-          Exploring vulnerabilities, building security tools, and documenting my journey
-          through CTF challenges and real-world penetration testing. Passionate about
-          offensive security, automation, and sharing knowledge.
+          Just someone who enjoys breaking things (ethically), building tools, and learning
+          about offensive security through CTF challenges and homelab experiments.
+          Not a pro - just passionate about exploring this stuff.
         </p>
 
         <div class="hero-actions animate-slideUp">
@@ -159,24 +159,24 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
+  <!-- Interests Section -->
   <section class="skills-section">
     <div class="section-container">
       <div class="section-header">
         <div class="header-line left"></div>
         <h2 class="section-title">
           <span class="title-bracket">[</span>
-          CORE_SKILLS
+          STUFF_I_EXPLORE
           <span class="title-bracket">]</span>
         </h2>
         <div class="header-line right"></div>
       </div>
 
       <div class="skills-grid">
-        {#each skills as skill, i}
+        {#each interests as interest, i}
           <div class="skill-card" style="animation-delay: {i * 0.1}s">
-            <div class="skill-icon">{@html skill.icon}</div>
-            <span class="skill-name">{skill.name}</span>
+            <div class="skill-icon">{@html interest.icon}</div>
+            <span class="skill-name">{interest.name}</span>
             <div class="skill-corner tl"></div>
             <div class="skill-corner br"></div>
           </div>

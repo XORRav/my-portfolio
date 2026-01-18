@@ -4,8 +4,8 @@
 </script>
 
 <svelte:head>
-  <title>About | Your Portfolio</title>
-  <meta name="description" content="Documentation of my projects and writeups" />
+  <title>About | Security Enthusiast</title>
+  <meta name="description" content="A hobbyist's journey into security, CTFs, and tool development" />
 </svelte:head>
 
 <Navbar />
@@ -32,9 +32,9 @@
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
           </svg>
         </div>
-        <h2>Documentation Hub</h2>
+        <h2>Just a Hobbyist Here</h2>
         <p class="lead-text">
-          This website serves as a central repository for documenting my cybersecurity journey, technical projects, and learning experiences.
+          I'm not a professional penetration tester or security researcher - just someone who's genuinely curious about how things work (and how they break). This site documents my learning journey through CTFs, homelab experiments, and whatever else catches my interest.
         </p>
 
         <div class="info-grid">
@@ -46,8 +46,8 @@
               </svg>
             </div>
             <div class="info-content">
-              <h3>Projects</h3>
-              <p>Technical projects showcasing development skills, tools, and implementations across various technologies.</p>
+              <h3>Projects & Tools</h3>
+              <p>Random things I've built while learning - scripts, tools, and experiments that helped me understand concepts better.</p>
             </div>
           </div>
 
@@ -59,7 +59,7 @@
             </div>
             <div class="info-content">
               <h3>CTF Writeups</h3>
-              <p>Detailed walkthroughs of Capture The Flag challenges from platforms like HackTheBox, TryHackMe, and PortSwigger.</p>
+              <p>Notes and walkthroughs from CTF challenges I've attempted on HackTheBox, TryHackMe, PortSwigger, and similar platforms.</p>
             </div>
           </div>
 
@@ -70,23 +70,33 @@
               </svg>
             </div>
             <div class="info-content">
-              <h3>Learning Journey</h3>
-              <p>A collection of notes, techniques, and methodologies learned through hands-on practice and research.</p>
+              <h3>Homelab Stuff</h3>
+              <p>Documentation of my homelab setup - servers, containers, networking experiments, and things that broke along the way.</p>
             </div>
           </div>
         </div>
 
         <div class="purpose-section">
-          <h3>Purpose</h3>
+          <h3>Why This Site?</h3>
           <p>
-            This portfolio exists to:
+            Mainly to:
           </p>
           <ul class="purpose-list">
-            <li>Document technical knowledge and skills</li>
-            <li>Share learning experiences with the community</li>
-            <li>Track progress in cybersecurity and development</li>
-            <li>Serve as a reference for future projects</li>
+            <li>Keep notes for myself (and maybe help others)</li>
+            <li>Document what I've learned and tried</li>
+            <li>Have a place to share writeups and experiments</li>
+            <li>Track my progress as I learn new things</li>
           </ul>
+        </div>
+
+        <div class="disclaimer-section">
+          <h3>Disclaimer</h3>
+          <p>
+            I'm just a hobbyist and enthusiast learning this stuff for fun. I'm not a certified professional, and you shouldn't take anything here as expert advice.
+          </p>
+          <p>
+            <strong>All security techniques, tools, and knowledge shared on this site are intended for educational purposes and authorized testing only.</strong> Always get proper permission before testing on systems you don't own. Use this information ethically and responsibly. Don't be that person.
+          </p>
         </div>
       </div>
     </div>
@@ -274,6 +284,37 @@
     color: var(--color-accent-blue-light);
     font-weight: 600;
     font-size: 1.25rem;
+  }
+
+  /* Disclaimer Section */
+  .disclaimer-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 107, 107, 0.05);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    border-left: 3px solid var(--color-accent-pink);
+    border-radius: var(--radius-md);
+  }
+
+  .disclaimer-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent-pink);
+    margin-bottom: 1rem;
+  }
+
+  .disclaimer-section p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .disclaimer-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .disclaimer-section strong {
+    color: var(--color-text-primary);
   }
 
   /* Responsive Design */
