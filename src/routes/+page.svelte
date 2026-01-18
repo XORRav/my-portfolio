@@ -4,6 +4,16 @@
   import Footer from '$lib/components/Footer.svelte';
   import projectsData from '$lib/../data/projects.json';
 
+  interface Project {
+    title: string;
+    description: string;
+    tags: string[];
+    date: string;
+    featured?: boolean;
+    githubUrl?: string;
+    [key: string]: unknown;
+  }
+
   let visible = false;
   let featuredWriteups: any[] = [];
   let writeupsCount = 0;
@@ -24,7 +34,8 @@
     }
   });
 
-  const featuredProjects = projectsData.filter(p => p.featured).slice(0, 3);
+  const projects = projectsData as Project[];
+  const featuredProjects = projects.filter((p: Project) => p.featured).slice(0, 3);
 
   const interests = [
     { name: 'Offensive Security', icon: '&#x1F480;' },
@@ -71,15 +82,12 @@
         </div>
 
         <h1 class="hero-title animate-slideUp">
-          <span class="title-line">Security Enthusiast</span>
-          <span class="title-accent">&amp;</span>
-          <span class="title-gradient">Curious Hobbyist</span>
+          <span class="title-greeting">Hey, I'm XORRav</span>
+          <span class="title-gradient">Security Enthusiast</span>
         </h1>
 
         <p class="hero-description animate-slideUp">
-          Just someone who enjoys breaking things (ethically), building tools, and learning
-          about offensive security through CTF challenges and homelab experiments.
-          Not a pro - just passionate about exploring this stuff.
+          A curious hobbyist who enjoys breaking things (ethically), building tools, and exploring offensive security through CTF challenges and homelab experiments. Not a pro — just passionate about learning.
         </p>
 
         <div class="hero-actions animate-slideUp">
@@ -311,7 +319,7 @@
           Let's connect and build something secure together.
         </p>
         <div class="cta-actions">
-          <a href="https://github.com/ProXxNebula" target="_blank" rel="noopener noreferrer" class="cyber-btn primary">
+          <a href="https://github.com/XORRav" target="_blank" rel="noopener noreferrer" class="cyber-btn primary">
             <span class="btn-bg"></span>
             <span class="btn-content">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -413,17 +421,17 @@
     min-height: calc(100vh - 73px);
     display: flex;
     align-items: center;
-    padding: 6rem 0 4rem;
+    padding: 8rem 0 6rem;
     position: relative;
   }
 
   .hero-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
     align-items: center;
   }
 
@@ -483,21 +491,18 @@
   .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
   }
 
-  .title-line {
-    color: var(--color-text-primary);
-  }
-
-  .title-accent {
-    color: var(--color-accent-blue);
-    font-size: 2rem;
-    margin: 0.25rem 0;
+  .title-greeting {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0;
   }
 
   .title-gradient {
@@ -506,14 +511,16 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
+    letter-spacing: -0.02em;
   }
 
   .hero-description {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--color-text-tertiary);
-    margin-bottom: 2.5rem;
-    max-width: 550px;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.75rem;
+    max-width: 540px;
+    letter-spacing: 0.01em;
   }
 
   /* Cyber Buttons */
@@ -802,14 +809,14 @@
   .skills-section,
   .featured-section,
   .writeups-section {
-    padding: 6rem 0;
+    padding: 7rem 0;
     position: relative;
   }
 
   .section-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
 
   .section-header {
@@ -847,9 +854,13 @@
 
   .section-subtitle {
     text-align: center;
-    color: var(--color-text-tertiary);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .view-all-link {
@@ -1331,14 +1342,41 @@
   .animate-slideUp:nth-child(4) { animation-delay: 0.3s; }
 
   /* Responsive */
+  @media (max-width: 1200px) {
+    .hero-container {
+      gap: 4rem;
+      padding: 0 2rem;
+    }
+
+    .section-container {
+      padding: 0 2rem;
+    }
+  }
+
   @media (max-width: 1024px) {
     .hero-container {
       grid-template-columns: 1fr;
       gap: 3rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero-title {
       font-size: 2.75rem;
+      align-items: center;
+    }
+
+    .title-greeting {
+      font-size: 1.35rem;
+    }
+
+    .hero-description {
+      max-width: 600px;
     }
 
     .hero-visual {
@@ -1354,55 +1392,124 @@
     .writeups-grid {
       grid-template-columns: 1fr;
     }
+
+    .skills-section,
+    .featured-section,
+    .writeups-section {
+      padding: 5rem 0;
+    }
   }
 
   @media (max-width: 768px) {
     .hero-section {
-      padding: 4rem 0 2rem;
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-container {
+      padding: 0 1.5rem;
     }
 
     .hero-title {
       font-size: 2.25rem;
     }
 
+    .title-greeting {
+      font-size: 1.15rem;
+    }
+
     .hero-description {
-      font-size: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
     .stats-container {
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1rem;
     }
 
     .stat-divider {
       display: none;
     }
 
+    .section-container {
+      padding: 0 1.5rem;
+    }
+
     .section-title {
       font-size: 1.25rem;
     }
 
+    .section-subtitle {
+      font-size: 0.95rem;
+    }
+
     .skills-grid {
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
     }
 
     .cta-container {
       padding: 3rem 1.5rem;
+      margin: 0 1rem;
     }
 
     .cta-title {
       font-size: 1.5rem;
     }
+
+    .cta-description {
+      font-size: 1rem;
+    }
+
+    .skills-section,
+    .featured-section,
+    .writeups-section {
+      padding: 4rem 0;
+    }
   }
 
   @media (max-width: 480px) {
+    .hero-section {
+      padding: 4rem 0 2rem;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+    }
+
+    .title-greeting {
+      font-size: 1rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
     .hero-actions {
       flex-direction: column;
+      width: 100%;
     }
 
     .cyber-btn {
       width: 100%;
       justify-content: center;
+    }
+
+    .cyber-badge {
+      padding: 0.4rem 0.75rem;
+    }
+
+    .badge-text {
+      font-size: 0.65rem;
+    }
+
+    .stat-card {
+      padding: 0.75rem 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
     }
 
     .writeups-grid {
@@ -1411,6 +1518,14 @@
 
     .writeups-grid .writeup-card {
       min-width: 0;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-card {
+      padding: 1.5rem 1rem;
     }
   }
 </style>

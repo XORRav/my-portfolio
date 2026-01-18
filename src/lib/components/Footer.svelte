@@ -4,9 +4,9 @@
   const socialLinks = [
     {
       name: 'GitHub',
-      url: 'https://github.com/ProXxNebula',
+      url: 'https://github.com/XORRav',
       icon: 'github',
-      username: '@ProXxNebula'
+      username: '@XORRav'
     }
   ];
 
@@ -19,7 +19,7 @@
   ];
 
   const resources = [
-    { name: 'GitHub', url: 'https://github.com/ProXxNebula' }
+    { name: 'GitHub', url: 'https://github.com/XORRav' }
   ];
 </script>
 
@@ -169,7 +169,7 @@
       <div class="footer-bottom-left">
         <p class="copyright">
           <span class="terminal-prompt">©</span>
-          {currentYear} <span class="copyright-name">ProXxNebula</span>
+          {currentYear} <span class="copyright-name">XORRav</span>
         </p>
         <p class="build-info">
           <span class="build-label">Built with</span>
@@ -177,7 +177,7 @@
             SvelteKit
           </a>
           <span class="build-separator">//</span>
-          <a href="https://github.com/ProXxNebula" target="_blank" rel="noopener" class="tech-link">
+          <a href="https://github.com/XORRav" target="_blank" rel="noopener" class="tech-link">
             View Source
           </a>
         </p>
@@ -227,9 +227,15 @@
 <style>
   .footer {
     position: relative;
-    background: var(--color-bg-secondary);
+    background: linear-gradient(180deg, rgba(8, 8, 15, 0.95) 0%, rgba(3, 3, 8, 1) 100%);
     margin-top: 8rem;
     overflow: hidden;
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  :root[data-theme="light"] .footer {
+    background: linear-gradient(180deg, rgba(240, 240, 250, 0.98) 0%, rgba(230, 230, 245, 1) 100%);
+    border-top: 1px solid rgba(124, 58, 237, 0.15);
   }
 
   /* Background elements */
@@ -285,8 +291,9 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-accent-primary), var(--color-accent-secondary), var(--color-accent-primary), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent 5%, var(--color-accent-primary) 30%, var(--color-accent-secondary) 50%, var(--color-accent-primary) 70%, transparent 95%);
+    opacity: 0.8;
   }
 
   .footer-container {
@@ -595,12 +602,16 @@
 
   .divider-text {
     position: absolute;
-    background: var(--color-bg-secondary);
+    background: rgba(5, 5, 12, 1);
     padding: 0 1.5rem;
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.15em;
+  }
+
+  :root[data-theme="light"] .divider-text {
+    background: rgba(235, 235, 248, 1);
   }
 
   /* Footer Bottom */

@@ -374,14 +374,14 @@
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
 
   /* Hero Section */
   .hero-section {
-    padding: 4rem 0 3rem;
+    padding: 5rem 0 3.5rem;
     position: relative;
   }
 
@@ -478,10 +478,11 @@
   }
 
   .page-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--color-text-tertiary);
-    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 650px;
   }
 
   /* Stats Container */
@@ -568,7 +569,7 @@
 
   /* Content Section */
   .content-section {
-    padding: 4rem 0 6rem;
+    padding: 5rem 0 7rem;
   }
 
   .section-header {
@@ -951,13 +952,29 @@
   }
 
   /* Responsive Design */
+  @media (max-width: 1200px) {
+    .container {
+      padding: 0 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .content-section {
+      padding: 4rem 0 5rem;
+    }
+
+    .homelab-grid {
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+  }
+
   @media (max-width: 768px) {
     .container {
       padding: 0 1.5rem;
     }
 
     .hero-section {
-      padding: 3rem 0 2rem;
+      padding: 4rem 0 2.5rem;
     }
 
     .page-title {
@@ -965,12 +982,13 @@
     }
 
     .page-subtitle {
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .stats-container {
       flex-wrap: wrap;
       justify-content: flex-start;
+      gap: 1rem;
     }
 
     .stat-divider {
@@ -1002,8 +1020,16 @@
   }
 
   @media (max-width: 480px) {
+    .hero-section {
+      padding: 3rem 0 2rem;
+    }
+
     .page-title {
       font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
     }
 
     .card-header {

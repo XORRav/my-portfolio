@@ -259,16 +259,18 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    background: rgba(5, 5, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
   }
 
   :root[data-theme="light"] .navbar {
-    background: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+    background: rgba(250, 250, 255, 0.95);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.25);
+    box-shadow: 0 4px 30px rgba(124, 58, 237, 0.1);
   }
 
   /* Scan line animation */
@@ -289,19 +291,19 @@
   }
 
   .navbar.scrolled {
-    background: rgba(10, 10, 15, 0.95);
-    border-bottom-color: rgba(139, 92, 246, 0.4);
+    background: rgba(3, 3, 8, 0.98);
+    border-bottom-color: rgba(139, 92, 246, 0.5);
     box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.3),
-      0 0 30px rgba(139, 92, 246, 0.1);
+      0 4px 30px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(139, 92, 246, 0.15);
   }
 
   :root[data-theme="light"] .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    border-bottom-color: rgba(124, 58, 237, 0.3);
+    background: rgba(248, 248, 255, 0.98);
+    border-bottom-color: rgba(124, 58, 237, 0.35);
     box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.1),
-      0 0 30px rgba(124, 58, 237, 0.1);
+      0 4px 30px rgba(0, 0, 0, 0.08),
+      0 0 40px rgba(124, 58, 237, 0.12);
   }
 
   .nav-container {

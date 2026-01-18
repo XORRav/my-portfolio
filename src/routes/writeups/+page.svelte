@@ -442,14 +442,14 @@
 
   /* Hero Section */
   .page-hero {
-    padding: 4rem 0 3rem;
+    padding: 5rem 0 3.5rem;
     position: relative;
   }
 
   .hero-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
 
   /* Cyber Badge */
@@ -536,6 +536,7 @@
 
   .title-line {
     color: var(--color-text-primary);
+    letter-spacing: -0.02em;
   }
 
   .title-gradient {
@@ -543,14 +544,15 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    letter-spacing: -0.02em;
   }
 
   .page-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--color-text-tertiary);
-    max-width: 700px;
-    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    max-width: 650px;
+    margin-bottom: 2.5rem;
   }
 
   /* Stats Container */
@@ -639,15 +641,16 @@
   /* Filters Section */
   .filters-section {
     padding: 2rem 0;
-    background: rgba(139, 92, 246, 0.02);
-    border-top: 1px solid rgba(139, 92, 246, 0.15);
-    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    background: rgba(5, 5, 12, 0.5);
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    backdrop-filter: blur(10px);
   }
 
   .filters-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -794,13 +797,13 @@
 
   /* Writeups Section */
   .writeups-section {
-    padding: 4rem 0 6rem;
+    padding: 5rem 0 7rem;
   }
 
   .writeups-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
 
   .section-header {
@@ -963,6 +966,14 @@
   }
 
   /* Responsive */
+  @media (max-width: 1200px) {
+    .hero-content,
+    .filters-container,
+    .writeups-container {
+      padding: 0 2rem;
+    }
+  }
+
   @media (max-width: 1024px) {
     .page-title {
       font-size: 2.75rem;
@@ -970,6 +981,10 @@
 
     .writeups-grid {
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+
+    .writeups-section {
+      padding: 4rem 0 5rem;
     }
   }
 
@@ -981,7 +996,7 @@
     }
 
     .page-hero {
-      padding: 3rem 0 2rem;
+      padding: 4rem 0 2.5rem;
     }
 
     .page-title {
@@ -989,7 +1004,7 @@
     }
 
     .page-subtitle {
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
     .stats-container {
@@ -1015,12 +1030,25 @@
 
     .writeups-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .writeups-section {
+      padding: 3rem 0 4rem;
     }
   }
 
   @media (max-width: 480px) {
+    .page-hero {
+      padding: 3rem 0 2rem;
+    }
+
     .page-title {
       font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
     }
 
     .stats-container {

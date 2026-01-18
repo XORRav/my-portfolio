@@ -421,14 +421,14 @@
 
   /* Header Section */
   .writeup-header {
-    background: linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, transparent 100%);
-    border-bottom: 1px solid var(--color-border-default);
-    padding: 2rem 0 3rem;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(6, 182, 212, 0.02) 50%, transparent 100%);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 2.5rem 0 3.5rem;
     transition: opacity 0.3s ease;
   }
 
   .header-content {
-    max-width: 800px;
+    max-width: 850px;
   }
 
   .header-meta {
@@ -481,13 +481,15 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .writeup-description {
-    font-size: 1.125rem;
+    font-size: 1.15rem;
     color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 1.75rem;
+    max-width: 700px;
   }
 
   .header-footer {
